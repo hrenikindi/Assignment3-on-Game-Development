@@ -49,9 +49,10 @@ add.addEventListener("click", function(){
     if(num_1+num_2===finalValue){
         score++;
         randomise();
-        resetTimer(timer_Id);
+        restartTimer(timer_Id);
     }else{
         location.href = "gameover.html?score=" + score;
+        localStorage.setItem("score",score)
     }
 
 });
@@ -59,9 +60,10 @@ sub.addEventListener("click", function(){
     if(num_1-num_2===finalValue){
         score++;
         randomise();
-        resetTimer(timer_Id);
+        restartTimer(timer_Id);
     }else{
         location.href = "gameover.html?score=" + score;
+        localStorage.setItem("score",score)
     }
 
 });
@@ -69,9 +71,10 @@ multiply.addEventListener("click", function(){
     if(num_1*num_2===finalValue){
         score++;
         randomise();
-        resetTimer(timer_Id);
+        restartTimer(timer_Id);
     }else{
         location.href = "gameover.html?score=" + score;
+        localStorage.setItem("score",score)
     }
 });
 div.addEventListener( "click" , function(){
@@ -81,18 +84,20 @@ div.addEventListener( "click" , function(){
     else if(num_1/num_2===finalValue){
         score++;
         randomise();
-        resetTimer(timer_Id);
+        restartTimer(timer_Id);
     }else{
         location.href = "gameover.html?score=" + score;
+        localStorage.setItem("score",score)
     }
 });
 mod.addEventListener("click", function(){
     if(num_1%num_2===finalValue){
         score++;
         randomise();
-        resetTimer(timer_Id);
+        restartTimer(timer_Id);
     }else{
         location.href = "gameover.html?score=" + score;
+        localStorage.setItem("score",score)
     }
 });
 
@@ -100,23 +105,22 @@ mod.addEventListener("click", function(){
 var time = 20;
 var timer_Id;
 
-function startTimer() {
-  startTime = 20;
+function gameTimer() {
+  initialTime = 20;
   timer.innerHTML = time;
   timer_Id = setInterval(() => {
-    startTime--;
-    if (startTime == 0){
+    initialTime--;
+    if (initialTime == 0){
         location.href = "gameover.html?score=" + score;
+        localStorage.setItem("score",score)
     }    
-    timer.innerHTML = startTime;
+    timer.innerHTML = initialTime;
   }, 1000);
 }
 
-function resetTimer(intervals) {
-  clearInterval(intervals);
-  startTimer();
+function restartTimer(intervals) {
+  clearTimer(intervals);
+  gameTimer();
 }
 
-startTimer();
-
-
+gameTimer();
