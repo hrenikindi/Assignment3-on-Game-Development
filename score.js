@@ -1,14 +1,9 @@
 // Iteration 8: Making scoreboard functional
-var urlParams = new URLSearchParams(window.location.search);
-console.log(urlParams);
+let game_board = document.getElementById('score-board');
+let finalscore = localStorage.getItem('score');
+game_board.innerText = finalscore;
 
-var score = urlParams.get("score");
-
-var scoreBoard = document.getElementById("score-board");
-
-var playAgainButton = document.getElementById("play-again-button");
-
-scoreBoard.innerHTML = score;
-playAgainButton.onclick = (e) => {
-  location.href = "./game.html";
-};
+var restart = document.getElementById('play-again-button');
+restart.onclick = function(){
+   location.href = "./game.html"
+}
